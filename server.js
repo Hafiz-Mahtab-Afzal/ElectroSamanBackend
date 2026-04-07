@@ -15,7 +15,10 @@ const app = express()
 // important apis 
 app.use(express.json({ limit: "12mb" })) //allow incoming json data
 app.use(morgan("dev"))
-app.use(cors())  // it will allow browser from server to request pais
+app.use(cors({       // it will allow browser from server to request pais
+  origin: "https://electro-saman-frontend.vercel.app", // 👈 apna ACTUAL frontend URL yahan likho
+  credentials: true
+}))  
 // testing apis (3)
 app.get("/api/v1",(req,res) => {
   res.json("api is running")
