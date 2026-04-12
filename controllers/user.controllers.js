@@ -85,6 +85,33 @@ const signup = async (req,res) => {
       catchErr(err,res)
     }
 }
+
+const signUpWithGoogle = async (req,res) => {
+
+  const {first_name,last_name,email,password,profilepicture,phonenumber,role} = req.body
+    try{
+    const existingUser = await user.findOne({email:email});
+    if(existingUser){
+      return error(`This email is already registered press login`,res)
+    }
+    if(!existingUser){
+      const User = await user({
+        first_name:first_name,
+        last_name:last_name,
+        email:email,
+        password:password,
+        profilepicture:profilepicture,
+        phonenumber:phonenumber,
+        signUpWithGoogle:true,
+        role:role
+      }).save()
+      
+      GenerateTokenAndUser(User,req,res,"you are successsfuly logged In")
+    }}
+    catch(err){
+      catchErr(err,res)
+    }
+}
 // 3) logged in with your credientials /login
 const login = async (req,res) => {
      try{
@@ -264,6 +291,7 @@ const fetchLoggedUser = async (req,res) => {
 export {
   preSignup,
   signup,
+  signUpWithGoogle,
   login,
   forgetPassword,
   otp,

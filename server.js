@@ -17,11 +17,14 @@ app.use(express.json({ limit: "12mb" })) //allow incoming json data
 app.use(morgan("dev"))
 app.use(cors({
   origin: [
+    "http://localhost",        
+    "http://localhost:5173",
+    "http://localhost:3000",
     "https://electro-saman-frontend.vercel.app",
-    /https:\/\/electro-saman-frontend.*\.vercel\.app/  // saare vercel URLs allow
+    /https:\/\/electro-saman-frontend.*\.vercel\.app/
   ],
   credentials: true
-}))  
+}))
 // testing apis (3)
 app.get("/api/v1",(req,res) => {
   res.json("api is running")

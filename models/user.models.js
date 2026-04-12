@@ -17,6 +17,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  signUpWithGoogle:{
+    type: Boolean,
+    default: false
+  },
   username: {
     type: String,
     default: '',

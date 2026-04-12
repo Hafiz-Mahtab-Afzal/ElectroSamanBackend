@@ -7,6 +7,7 @@ const users = express.Router()
 /* these are not protected routes not required login */
 users.post("/pre-signup",auth.preSignup)
 users.post("/signup",auth.signup)
+users.post("/signUpWithGoogle",auth.signUpWithGoogle)
 users.post("/login",auth.login)
 users.post("/forget-password",auth.forgetPassword)
 users.post("/otp",auth.otp)
